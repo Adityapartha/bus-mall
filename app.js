@@ -5,80 +5,81 @@ var bussmallpic = document.getElementById('bussmallpic');
 var bussmallpic0 = document.getElementById('bussmallpic0');
 var bussmallpic1 = document.getElementById('bussmallpic1');
 var list = document.getElementById('options');
+var totalClick = 0;
+var i=0;
 
-function BusSmallPic(name) {
+function Product(name) {
     this.filepath= `bussmallpic/${name}`;
     this.name= name;
     this.view = 0;
     allBusSmallPic.push(this);
 }
 
-new BusSmallPic('bag.jpg');
-new BusSmallPic('banana.jpg');
-new BusSmallPic('bathroom.jpg');
-new BusSmallPic('boots.jpg');
-new BusSmallPic('breakfast.jpg');
-new BusSmallPic('bubblegum.jpg');
-new BusSmallPic('chair.jpg');
-new BusSmallPic('cthulhu.jpg');
-new BusSmallPic('dog-duck.jpg');
-new BusSmallPic('dragon.jpg');
-new BusSmallPic('pen.jpg');
-new BusSmallPic('pet-sweep.jpg');
-new BusSmallPic('scissors.jpg');
-new BusSmallPic('shark.jpg');
-new BusSmallPic('sweep.png');
-new BusSmallPic('tauntaun.jpg');
-new BusSmallPic('unicorn.jpg');
-new BusSmallPic('usb.gif');
-new BusSmallPic('water-can.jpg');
-new BusSmallPic('wine-glass.jpg');
+new Product('bag.jpg');
+new Product('banana.jpg');
+new Product('bathroom.jpg');
+new Product('boots.jpg');
+new Product('breakfast.jpg');
+new Product('bubblegum.jpg');
+new Product('chair.jpg');
+new Product('cthulhu.jpg');
+new Product('dog-duck.jpg');
+new Product('dragon.jpg');
+new Product('pen.jpg');
+new Product('pet-sweep.jpg');
+new Product('scissors.jpg');
+new Product('shark.jpg');
+new Product('sweep.png');
+new Product('tauntaun.jpg');
+new Product('unicorn.jpg');
+new Product('usb.gif');
+new Product('water-can.jpg');
+new Product('wine-glass.jpg');
 
-// function showRandomBusPic(){
-//     var random = Math.floor(Math.random() * allBusSmallPic.length);
-//     bussmallpic.src = allBusSmallPic[random].filepath;
-//     bussmallpic.alt = allBusSmallPic[random].name;
-//     bussmallpic.title = allBusSmallPic[random].name;
-//     allBusSmallPic[random].view++;
- 
 var imagestags= [bussmallpic, bussmallpic0, bussmallpic1];
+var preRandomNumber =[];
 
-var num1 = Math.floor(Math.random() * allBusSmallPic.length);
-var num2 = Math.floor(Math.random() * allBusSmallPic.length);
-var num3 = Math.floor(Math.random() * allBusSmallPic.length);
+function showRandomPic(){
+    var randomNumbers =[];
 
-function showRandomBusPic(){
-    num1 = Math.floor(Math.random() * allBusSmallPic.length);
+    for (i = 0; i < 3; i++) {
+        var random = Math.floor(Math.random() * allBusSmallPic.length);
+        imagestags[i].src = allBusSmallPic[random].filepath;
+        imagestags[i].alt = allBusSmallPic[random].name;
+        imagestags[i].title = allBusSmallPic[random].name;
+        allBusSmallPic[random].views++;
+    
+        if (random === randomNumbers[0] || random === randomNumbers[1] || random === randomNumbers[2]) {
+          i--;
+        } else if (random === preRandomNumber[0] || random === preRandomNumber[1] || random === preRandomNumber[2]) {
+         
+          i--;
+        } else {
+          randomNumbers.push(random);
+        }
+      }
+      preRandomNumber = randomNumbers.slice(0);
+      console.log(preRandomNumber);
+    }
+showRandomPic();
 
-    imagestags[0].src = allBusSmallPic[num1].filepath;
-    imagestags[0].alt = allBusSmallPic[num1].name;
-    imagestags[0].title = allBusSmallPic[num1].name;
-    allBusSmallPic[num1].view++;
-    
-    
-    while(num2 === num1){
-        num2 = Math.floor(Math.random() * allBusSmallPic.length);
-    };
-    imagestags[1].src = allBusSmallPic[num2].filepath;
-    imagestags[1].alt = allBusSmallPic[num2].name;
-    imagestags[1].title = allBusSmallPic[num2].name;
-    allBusSmallPic[num2].view++;
-   
-        
-    while( num3 === num1 || num3 === num2){
-        num3 = Math.floor(Math.random() * allBusSmallPic.length);
-    };
-    imagestags[2].src = allBusSmallPic[num3].filepath;
-    imagestags[2].alt = allBusSmallPic[num3].name;
-    imagestags[2].title = allBusSmallPic[num3].name;
-    allBusSmallPic[num3].view++;
-    
-}
 
 list.addEventListener('click', handleClick);
-showRandomBusPic()
+
 
 function handleClick(event){
-    console.log(event.target);
-    showRandomBusPic();
+    console.log(event.target.alt);
+    totalClick++;
+    for(var i; i < allBusSmallPic.length; i++){
+      if(event.target.alt = allBusSmallPic[i].name){
+          console.log('was clicked', event.target.alt);
+          allBusSmallPic[i].click++
+      }
+    }
+    if(totalClick === 25){
+        list.removeEventListener('click', handleClick);
+        return;
+    }
+    showRandomPic();
 }
+    showRandomPic();
