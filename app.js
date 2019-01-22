@@ -1,3 +1,4 @@
+
 'use strict'
 
 var allBusSmallPic =[];
@@ -83,3 +84,5 @@ function handleClick(event){
     showRandomPic();
 }
     showRandomPic();
+
+
