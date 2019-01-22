@@ -1,0 +1,15 @@
+body{
+    background: #32CD32;
+}
+h1{
+    font-size: 50px;
+    text-align: center;
+    color: black;
+}
+p{
+    font-size: 25px;
+    text-align: center;
+}
+img{
+    width: 350px;
+}
