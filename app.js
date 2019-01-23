@@ -8,7 +8,7 @@ var bussmallpic1 = document.getElementById('bussmallpic1');
 var list = document.getElementById('options');
 var totalClick = 0;
 var i=0;
-var myChart;
+// var myChart;
 
 createChart();
 
@@ -73,11 +73,9 @@ function showRandomPic(){
     }
 showRandomPic();
 
+
+
 list.addEventListener('click', handleClick);
-
-
-
-
 function handleClick(event){
     console.log(event.target.alt);
     totalClick++;
@@ -90,9 +88,11 @@ function handleClick(event){
     }
     if(totalClick === 25){
         list.removeEventListener('click', handleClick);
+        
         return;
     }
     showRandomPic();
+
 }
 
 function handlesClick(event) {
@@ -102,40 +102,36 @@ function handlesClick(event) {
         }
     }
 }
-totalClick++;
-if(totalClick === 24){
-    option.removeEventListener('click', handleClick);
-    console.log('hy');
-    updateChartArray();
+// totalClick++;
+// if(totalClick === 25){
+//     option.removeEventListener('click', handleClick);
+//     console.log('hy');
+//     updateChartArray();
     
-}
-showRandomPic();
+// }
+// showRandomPic();
 
-createChart();
-
-
+// createChart();
 
 
 
 function updateChartArray(){
-    console.log('hi');
+    
+    // console.log('hi');
     for (var i =0; i< allBusSmallPic.length; i++){
         title[i]  = allBusSmallPic[i].name;
         votes[i] = allBusSmallPic[i].view;
     }
 }
 
-
-
-//    function tallyVotes(thisPic) {
-//        for(var i =0; i < allBusSmallPic.length; i++){
-//            if(thisPic === allBusSmallPic[i].click){
-//                allBusSmallPic[i].click++;
-//                updateChartArray();
-//            }
-//        }
-//    }
-
+function tallyVotes(thisPic) {
+       for(var i =0; i < allBusSmallPic.length; i++){
+           if(thisPic === allBusSmallPic[i].click){
+               allBusSmallPic[i].click++;
+               updateChartArray();
+   }
+       }
+   }
 //    var data = {
 //        labels: title,
 //        datasets:[{
@@ -145,16 +141,15 @@ function updateChartArray(){
 
 
 
-
 function createChart(){
 
 var ctx = document.getElementById('myChart');
   var myChart = new Chart(ctx, {
     type: 'bar',
     data: {
-        labels: ['bag', 'banana', 'bathroom', 'boots', 'bubblegum', 'chair', 'cthulhu', 'dog-duck', 'pen', 'pet-sweep', 'scissors', 'shark', 'tauntaun', 'unicorn', 'usb', 'water-can'],
+        labels: ['bag','banana', 'bathroom','boots', 'breakfast', 'bubblegum', 'chair', 'cthulhu', 'dog-duck', 'dragon', 'pen', 'pet-sweep', 'scissors', 'shark', 'sweep', 'tauntaun', 'unicorn', 'usb', 'water-can', 'wine-glass'],
         datasets: [{
-            label: 'title',
+            label: 'Total votes',
             data: votes,
             backgroundColor: [
                 'rgba(255, 99, 132, 0.2)',

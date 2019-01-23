@@ -1,6 +1,6 @@
 
 body{
-    background: white;
+    background: yellow;
 }
 h1{
     font-size: 50px;
@@ -12,6 +12,7 @@ p{
     text-align: center;
 }
 img{
-    width: 350px;
-
+    width: 300px;
+    position: relative;
+    left: 200px;
 }
