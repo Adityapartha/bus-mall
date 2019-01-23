@@ -1,3 +1,4 @@
+
 'use strict'
 
 var allBusSmallPic =[];
@@ -185,3 +186,7 @@ var ctx = document.getElementById('myChart');
     }
 });
 }
+
+    showRandomPic();
+
+
