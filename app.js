@@ -103,7 +103,7 @@ function handlesClick(event) {
     }
 }
 totalClick++;
-if(totalClick === 24){
+if(totalClick === 25){
     option.removeEventListener('click', handleClick);
     console.log('hy');
     updateChartArray();
@@ -118,24 +118,22 @@ createChart();
 
 
 function updateChartArray(){
-    console.log('hi');
+    
+    // console.log('hi');
     for (var i =0; i< allBusSmallPic.length; i++){
         title[i]  = allBusSmallPic[i].name;
         votes[i] = allBusSmallPic[i].view;
     }
 }
 
-
-
-//    function tallyVotes(thisPic) {
-//        for(var i =0; i < allBusSmallPic.length; i++){
-//            if(thisPic === allBusSmallPic[i].click){
-//                allBusSmallPic[i].click++;
-//                updateChartArray();
-//            }
-//        }
-//    }
-
+function tallyVotes(thisPic) {
+       for(var i =0; i < allBusSmallPic.length; i++){
+           if(thisPic === allBusSmallPic[i].click){
+               allBusSmallPic[i].click++;
+               updateChartArray();
+   }
+       }
+   }
 //    var data = {
 //        labels: title,
 //        datasets:[{
