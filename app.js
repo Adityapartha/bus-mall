@@ -1,24 +1,9 @@
 'use strict';
-
-var allBusSmallPic =[];
-var bussmallpic = document.getElementById('bussmallpic');
-var bussmallpic0 = document.getElementById('bussmallpic0');
-var bussmallpic1 = document.getElementById('bussmallpic1');
-var list = document.getElementById('options');
-var totalClick = 0;
-var votes = [];
-var imagestags= [bussmallpic, bussmallpic0, bussmallpic1];
-var preRandomNumber =[];
-
-
-function Product(name) {
-    this.filepath= `bussmallpic/${name}`;
-    this.name= name;
-    this.view = 0;
-    this.click = 0;
-    allBusSmallPic.push(this);
-}
-
+if(localStorage.allBusSmallPicLoc){
+    console.log('stored data');
+    var allBusSmallPic = JSON.parse(localStorage.allBusSmallPicLoc);
+}else{
+   var allBusSmallPic =[];
 new Product('bag.jpg');
 new Product('banana.jpg');
 new Product('bathroom.jpg');
@@ -39,6 +24,27 @@ new Product('unicorn.jpg');
 new Product('usb.gif');
 new Product('water-can.jpg');
 new Product('wine-glass.jpg');
+}
+
+var bussmallpic = document.getElementById('bussmallpic');
+var bussmallpic0 = document.getElementById('bussmallpic0');
+var bussmallpic1 = document.getElementById('bussmallpic1');
+var list = document.getElementById('options');
+var totalClick = 0;
+var votes = [];
+var imagestags= [bussmallpic, bussmallpic0, bussmallpic1];
+var preRandomNumber =[];
+
+
+function Product(name) {
+    this.filepath= `bussmallpic/${name}`;
+    this.name= name;
+    this.view = 0;
+    this.click = 0;
+    allBusSmallPic.push(this);
+}
+
+
 
 var render =JSON.parse( localStorage.getItem ('ProductStringified'));
 
@@ -84,6 +90,8 @@ function handleClick(event){
           console.log('was clicked', event.target.alt);
           allBusSmallPic[i].click++
       }
+      localStorage.allBusSmallPicLoc = JSON.stringify(allBusSmallPic);
+
     }
     if(totalClick === 25){
         list.removeEventListener('click', handleClick);
